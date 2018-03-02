@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>首页</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	<script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js" />
+	<script src="https://cdn.bootcss.com/vue-resource/1.4.0/vue-resource.min.js" />
+</head>
+<body>
+
+<div id="app">
+	欢迎 {{ msg }} ！！
+</div>
+
+<script>
+	var vue = new Vue({
+		el: '#app',
+		data: {
+			msg: ''
+		}
+	})
+	vue.msg = sessionStorage.getItem("username")
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>登录</title>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	<script src="https://cdn.bootcss.com/vue/2.5.10/vue.min.js" />
+	<script src="https://cdn.bootcss.com/vue-resource/1.4.0/vue-resource.min.js" />
+</head>
+<body>
+
+<form id="login" v-on:submit.prevent="login">
+	<input type="text" v-model="username" /><br />
+	<input type="submit" value="登录" />
+</form>
+
+<script>
+	new Vue({
+		el: '#login',
+		data: {
+			username: '',
+			ret: 'fai'
+		},
+		methods: {
+			login() {
+				this.$http.get("http://192.168.191.4:8080/v1/login?username=" + this.username).then(function(res){
+//					console.log("data=" + res.bodyText)
+					if (res.bodyText != "ok") {
+						alert("账号错误")
+						return
+					}
+					sessionStorage.setItem("username", this.username)
+					window.location.href='chatroom.html'
+				}, function (res) {
+					console.log("status=" + res.status)
+					alert("网络异常")
+				});
+			},
+			test() {
+				console.log("test")
+			}
+		}
+	})
+</script>
+</body>
+</html>
