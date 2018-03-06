@@ -4,39 +4,50 @@ import com.alibaba.fastjson.JSON;
 import com.example.springboot.dao.UserMapper;
 import com.example.springboot.domain.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 演示mybatis的使用
+ * 演示缓存
  */
 @RestController
-@RequestMapping("/v1/mybatis")
-public class MybatisController {
+@RequestMapping("/v1/cache")
+public class CacheController {
 
 	@Autowired
 	private UserMapper userMapper;
 
 	@RequestMapping("")
+	@Cacheable(value = "cachename", key = "#username")
 //	public UserBean getUser(@RequestParam("username") String username) {  // 表示username必须传
-	public String getUser(String username) {
+	public UserBean getUser(String username) {
 		if (username == null || username.length() <= 0) {
-			return "invalid username param";
+			return null;
 		}
-		UserBean bean = userMapper.queryByName(username);
-		String json = JSON.toJSONString(bean);
-		return json;
+		return userMapper.queryByName(username);
 	}
 
 	@RequestMapping("/insert")
-	public int insert(String username, String nickname) {
-		return userMapper.insert(username, nickname);
+	@CachePut(value="cachename", key = "#username")
+	public UserBean insert(String username, String nickname) {
+		userMapper.insert(username, nickname);
+		UserBean bean = new UserBean();
+		bean.username = username;
+		bean.nickname = nickname;
+		return bean;
 	}
 
 	@RequestMapping("/update")
-	public int update(String username, String nickname) {
-		return userMapper.update(username, nickname);
+	@CachePut(value = "cachename", key="#username")
+	public UserBean update(String username, String nickname) {
+		userMapper.update(username, nickname);
+		UserBean bean = new UserBean();
+		bean.username = username;
+		bean.nickname = nickname;
+		return bean;
 	}
 
 	@RequestMapping("/testtran")
