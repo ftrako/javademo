@@ -93,6 +93,16 @@
         <dependency>
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
+
+        <!--支持热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>true</scope>
+            <!--optional我没弄明白，都说必须为true，但我测试true，false，不加都可以-->
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
@@ -103,8 +113,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--fork :  如果没有该项配置，肯定devtools不会起作用，即应用不会restart -->
+                    <fork>true</fork>
+                </configuration>
             </plugin>
-        </plugins>
+        </plugins><!---->
     </build>
 
 
