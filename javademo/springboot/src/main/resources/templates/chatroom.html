@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 	<title>登录</title>
-	<meta charset="UTF-8" />
-	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*"/>
 	<script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
 	<script src="https://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://cdn.bootcss.com/vue-resource/1.4.0/vue-resource.min.js"></script>
@@ -12,11 +12,11 @@
 <body>
 
 <div id="chatroom">
-	账号： {{ username }} <br />
+	账号： {{ username }} <br/>
 
-	接收消息：<br />
+	接收消息：<br/>
 
-	<div v-html="msg" />
+	<div v-html="msg"/>
 
 </div>
 
@@ -33,11 +33,11 @@
 			connect() {
 				console.log("connect....");
 				let socket = new SockJS('/endpoint');
-				stompClient=Stomp.over(socket);
+				stompClient = Stomp.over(socket);
 				let _this = this;
-				stompClient.connect({}, function(frame){
+				stompClient.connect({}, function (frame) {
 					console.log("connected: " + frame);
-					stompClient.subscribe('/topic/response', function(response){
+					stompClient.subscribe('/topic/response', function (response) {
 						console.log("rcv " + response.body);
 						_this.msg = response.body + "<br />" + _this.msg;
 					});

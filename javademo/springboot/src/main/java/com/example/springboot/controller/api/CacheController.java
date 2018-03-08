@@ -1,6 +1,5 @@
 package com.example.springboot.controller.api;
 
-import com.alibaba.fastjson.JSON;
 import com.example.springboot.dao.UserMapper;
 import com.example.springboot.domain.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +30,7 @@ public class CacheController {
 	}
 
 	@RequestMapping("/insert")
-	@CachePut(value="cachename", key = "#username")
+	@CachePut(value = "cachename", key = "#username")
 	public UserBean insert(String username, String nickname) {
 		userMapper.insert(username, nickname);
 		UserBean bean = new UserBean();
@@ -41,7 +40,7 @@ public class CacheController {
 	}
 
 	@RequestMapping("/update")
-	@CachePut(value = "cachename", key="#username")
+	@CachePut(value = "cachename", key = "#username")
 	public UserBean update(String username, String nickname) {
 		userMapper.update(username, nickname);
 		UserBean bean = new UserBean();

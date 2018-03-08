@@ -1,11 +1,7 @@
 package com.example.springboot.controller.api;
 
 import com.example.springboot.dao.UserMapper;
-import com.example.springboot.domain.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

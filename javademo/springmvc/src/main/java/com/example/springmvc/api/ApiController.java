@@ -28,6 +28,7 @@ public class ApiController {
 		bean.name = "姓名";
 		return bean;
 	}
+
 	@RequestMapping("/fortest")
 	public String fortest() {
 		return "ok";
