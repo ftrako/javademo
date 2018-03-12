@@ -1,6 +1,7 @@
 package com.example.springboot.controller.api;
 
 import com.alibaba.fastjson.JSON;
+import com.common.helper.Tool;
 import com.example.springboot.dao.UserMapper;
 import com.example.springboot.domain.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class MybatisController {
 	@RequestMapping("")
 //	public UserBean getUser(@RequestParam("username") String username) {  // 表示username必须传
 	public String getUser(String username) {
-		if (username == null || username.length() <= 0) {
+		if (Tool.isEmpty(username)) {
 			return "invalid username param";
 		}
 		UserBean bean = userMapper.queryByName(username);
