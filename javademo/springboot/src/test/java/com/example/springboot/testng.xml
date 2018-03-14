@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="springboot" verbose="1">
+    <test name="service">
+        <packages>
+            <package name="com.example.springboot.service.*"/>
+        </packages>
+    </test>
+    <test name="controller.api">
+        <packages>
+            <package name="com.example.springboot.controller.api.*"/>
+        </packages>
+    </test>
+    <test name="controller.page">
+        <packages>
+            <package name="com.example.springboot.controller.page.*"/>
+        </packages>
+    </test>
+</suite>

@@ -4,6 +4,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * 演示api自动生成
+ */
 @RestController("ApiSwagger1Controller")
 @RequestMapping("/v1/swagger1")
 public class Swagger1Controller {
