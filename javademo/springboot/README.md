@@ -9,6 +9,7 @@
 * 支持认证授权
 * 支持单元测试，右击执行test下的testng.xml
 * 支持token认证
+* 整合redis
 
 ## 执行
 

@@ -15,7 +15,6 @@ public class TokenUtil {
 		Map<String, Object> content = new HashMap<String, Object>();
 		content.put("text", text);
 
-		Date date = new Date();
 		Calendar nowTime = Calendar.getInstance();
 		nowTime.add(Calendar.SECOND, expiredSecs);
 		Date timeout = nowTime.getTime();
